@@ -21,23 +21,30 @@ namespace StackExchangeClient
         [JsonProperty(PropertyName = "reputation")]
         public int Reputation { get; set; }
 
-        [JsonProperty(PropertyName = "badge_counts")]
-        public BadgeCounts BadgeCounts { get; set; }
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
 
-        [JsonProperty(PropertyName = "link")]
-        public string Link { get; set; }
-    }
+            var other = (User)obj;
 
-    [JsonObject(MemberSerialization.OptIn)]
-    public class BadgeCounts
-    {
-        [JsonProperty(PropertyName = "gold")]
-        public int Gold { get; set; }
+            return Id == other.Id &&
+                DisplayName == other.DisplayName &&
+                ImageUrl == other.ImageUrl &&
+                Reputation == other.Reputation;
+        }
 
-        [JsonProperty(PropertyName = "silver")]
-        public int Silver { get; set; }
+        public override int GetHashCode()
+        {
+            var hash = 17;
+            hash *= 23 + Id.GetHashCode();
+            hash *= 23 + DisplayName != null ? DisplayName.GetHashCode() : 0;
+            hash *= 23 + ImageUrl != null ? ImageUrl.GetHashCode() : 0;
+            hash *= 23 + Reputation.GetHashCode();
 
-        [JsonProperty(PropertyName = "bronze")]
-        public int Bronze { get; set; }
+            return hash;
+        }
     }
 }
