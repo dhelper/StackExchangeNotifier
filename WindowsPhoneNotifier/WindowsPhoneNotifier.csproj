@@ -15,7 +15,8 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures></SupportedCultures>
+    <SupportedCultures>
+    </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>WindowsPhoneNotifier_$(Configuration)_$(Platform).xap</XapFilename>
@@ -95,7 +96,7 @@
     <Compile Include="DummyUserRepository.cs" />
     <Compile Include="IoCContainer.cs" />
     <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="Commands\LamdaRunner.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\UserDetailsViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -134,7 +135,7 @@
   <ItemGroup>
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

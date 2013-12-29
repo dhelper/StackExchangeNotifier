@@ -1,15 +1,10 @@
 ﻿using StackExchangeClient;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Threading;
 using WindowsPhoneNotifier.Commands;
 
 namespace WindowsPhoneNotifier.ViewModels
@@ -30,14 +25,14 @@ namespace WindowsPhoneNotifier.ViewModels
         private Uri _userImageUri;
         private string _userName;
         private int _userReputation;
-        private System.Windows.Media.Brush _reputationTrend;
+        private Brush _reputationTrend;
         private bool _wasInitialized;
 
         public UserDetailsViewModel(IUserRepository userRepository)
         {
             _reputationTrend = new SolidColorBrush(Colors.White);
             _factory = userRepository;
-            RefershUserDetails = new LamdaRunner(() => LoadUser());
+            RefershUserDetails = new DelegateCommand(() => LoadUser());
         }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -110,7 +105,7 @@ namespace WindowsPhoneNotifier.ViewModels
             }
         }
 
-        public System.Windows.Media.Brush ReputationTrend
+        public Brush ReputationTrend
         {
             get
             {

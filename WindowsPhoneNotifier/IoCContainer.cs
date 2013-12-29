@@ -1,10 +1,5 @@
 ﻿using Ninject;
 using StackExchangeClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WindowsPhoneNotifier
 {
@@ -16,7 +11,7 @@ namespace WindowsPhoneNotifier
         {
             Kernel.Bind<IJsonClient>().To<JsonWebClient>();
             Kernel.Bind<IUserRepository>().To<UserRepository>();
-            // Kernel.Bind<IUserRepository>().To<DummyUserRepository>();
+//            Kernel.Bind<IUserRepository>().To<DummyUserRepository>();
         }
 
         public static T Get<T>()

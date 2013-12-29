@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StackExchangeClient
@@ -15,7 +12,7 @@ namespace StackExchangeClient
 
     public class UserRepository : IUserRepository
     {
-        private IJsonClient client;
+        private readonly IJsonClient client;
 
         public UserRepository(IJsonClient client)
         {

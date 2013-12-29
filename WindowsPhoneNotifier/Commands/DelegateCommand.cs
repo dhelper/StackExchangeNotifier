@@ -7,10 +7,10 @@ using System.Windows.Input;
 
 namespace WindowsPhoneNotifier.Commands
 {
-    public class LamdaRunner : ICommand
+    public class DelegateCommand : ICommand
     {
         Action _runMe;
-        public LamdaRunner(Action runMe)
+        public DelegateCommand(Action runMe)
         {
             _runMe = runMe;
         }

@@ -1,8 +1,5 @@
-﻿using StackExchangeClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
+using StackExchangeClient;
 using System.Threading.Tasks;
 
 namespace WindowsPhoneNotifier
@@ -10,7 +7,7 @@ namespace WindowsPhoneNotifier
     public class DummyUserRepository : IUserRepository
     {
         private int index;
-        private User[] _users = new[]
+        private readonly User[] _users = new[]
         {
             new User{Id=404, DisplayName="Dummy", ImageUrl="", Link="", Reputation=10},
             new User{Id=404, DisplayName="Dummy", ImageUrl="", Link="", Reputation=20},

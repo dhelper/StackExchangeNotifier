@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StackExchangeClient
@@ -26,24 +22,22 @@ namespace StackExchangeClient
 
         public async Task<string> HttpGetUncompressedAsync(WebRequest request)
         {
-            return await HttpGetAsync(request).ContinueWith(t =>
-                {
-                    using (var inputStream = t.Result.GetResponseStream())
-                    using (var decompressed = new GZipStream(inputStream, CompressionMode.Decompress))
-                    using (var reader = new StreamReader(decompressed))
-                    {
-                        var result = reader.ReadToEnd();
+            var response = await HttpGetAsync(request).ConfigureAwait(false);
+            using (var inputStream = response.GetResponseStream())
+            using (var decompressed = new GZipStream(inputStream, CompressionMode.Decompress))
+            using (var reader = new StreamReader(decompressed))
+            {
+                var result = reader.ReadToEnd();
 
-                        return result;
-                    }
-                });
+                return result;
+            }
         }
 
         public async Task<string> HttpGetUncompressedAsync(string url)
         {
-           var request = HttpWebRequest.CreateHttp(url);
+            var request = WebRequest.CreateHttp(url);
 
-           return await HttpGetUncompressedAsync(request);
+            return await HttpGetUncompressedAsync(request);
         }
     }
 }

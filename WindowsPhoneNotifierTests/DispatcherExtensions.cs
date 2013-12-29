@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 
@@ -12,7 +9,7 @@ namespace WindowsPhoneNotifierTests
         public static Task<T> InvokeTaskAsync<T>(this Dispatcher dispatcher, Func<Task<T>> func)
         {
             var tcs = new TaskCompletionSource<T>();
-            dispatcher.BeginInvoke(new Action(async () =>
+            dispatcher.BeginInvoke(async () =>
             {
                 try
                 {
@@ -23,7 +20,7 @@ namespace WindowsPhoneNotifierTests
                 {
                     tcs.SetException(e);
                 }
-            }));
+            });
 
             return tcs.Task;
         }
@@ -31,7 +28,7 @@ namespace WindowsPhoneNotifierTests
         public static Task<T> InvokeAsync<T>(this Dispatcher dispatcher, Func<T> func)
         {
             var tcs = new TaskCompletionSource<T>();
-            dispatcher.BeginInvoke(new Action(() =>
+            dispatcher.BeginInvoke(() =>
             {
                 try
                 {
@@ -42,7 +39,7 @@ namespace WindowsPhoneNotifierTests
                 {
                     tcs.SetException(e);
                 }
-            }));
+            });
 
             return tcs.Task;
         }
